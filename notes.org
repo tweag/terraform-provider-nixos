@@ -17,16 +17,21 @@ and is not involved with regular deployments.
 
 NixOps does what it is good at: building NixOS configurations and
 deploying them to the instances. NixOps is not involved with
-marshalling resources or interacting with third party APIs.
+marshaling resources or interacting with third party APIs.
 
 This breakdown allows reduces the coupling to NixOps, allowing NixOS
-users to benefit from the marshalling support. It also dramatically
-increases the mindshare focusing on supporting more providers.
+users to benefit from the marshaling support. It also dramatically
+increases the community who is focusing on supporting more providers.
+
+* Implementation
 
 ** NixOS Provisioner
 
 A Terraform Provisioner is run on a system the first time it is
 created via Terraform.
+
+We can use a NixOS provisioner to install NixOS when it cannot be
+installed through normal, supported means.
 
 I propose we create a provisioner to replace an existing Linux
 installation with NixOS based on the existing work of =nixos-infect=,
@@ -144,7 +149,7 @@ The ~hardware-configuration.nix~ should be obvious, and the
 #+BEGIN_SRC nix
 { imports = [ ./hardware-configuration.nix ];
   deployment.targetHost = "17.1.71.7";
-};
+}
 #+END_SRC
 
 At this point, the =web_frontend/default.nix= is ready to be imported
