@@ -1,3 +1,6 @@
+* terraform-provider-nixos
+
+/Note: please use issue #1 for discussion and feedback./
 
 #+BEGIN_QUOTE
 Configuration management tools install and manage software on a
@@ -23,7 +26,7 @@ This breakdown allows reduces the coupling to NixOps, allowing NixOS
 users to benefit from the marshaling support. It also dramatically
 increases the community who is focusing on supporting more providers.
 
-* Motivations
+** Motivations
 
 I think a big reason NixOps is insufficient is it grew too many
 responsibilities without the community to back it up. The only reason
@@ -36,9 +39,9 @@ becomes a much simpler tool, and I think a much better tool.
  - Take advantage of NixOps' existing support for networks, peer
    nodes, and automatic VPN configuration.
 
-* Implementation
+** Implementation
 
-** NixOS Provisioner
+*** NixOS Provisioner
 
 A Terraform Provisioner is run on a system the first time it is
 created via Terraform.
@@ -58,7 +61,7 @@ When the provisioner finishes, the instance will be:
    by the system
  - An appropriately generated hardware-configuration.nix on the host.
 
-*** Examples
+**** Examples
 
 It might look like:
 
@@ -103,7 +106,7 @@ resource "digitalocean_droplet" "web_frontend" {
 }
 #+END_SRC
 
-*** Long term considerations
+**** Long term considerations
 
 Note, long term the Provisioner should eventually accept custom config
 and possibly custom config-generating programs to use during the
@@ -117,7 +120,7 @@ with nix-copy-closure or a tarball of Nix stores, to avoid dependency
 hell.
 
 
-** NixOS Provider
+*** NixOS Provider
 
 A Terraform Provider takes some configuration parameters, does "some
 stuff" (usually making API calls) and then updates the state inside
@@ -128,9 +131,9 @@ I propose we make a provider which exports a host's
 From there, the configuration can be written to disk inside a NixOps
 network.
 
-*** Examples
+**** Examples
 
-**** Usage of the provider in a terraform deployment
+***** Usage of the provider in a terraform deployment
 
 #+BEGIN_SRC hcl
 provider "nixops" {
@@ -178,7 +181,7 @@ in to a network. For example:
 #+END_SRC
 
 
-**** Supporting arbitrary Nix configuration
+***** Supporting arbitrary Nix configuration
 
 #+BEGIN_SRC hcl
 provider "nixops" {
@@ -211,13 +214,13 @@ And ~terraform.nix~ will contain:
 }
 #+END_SRC
 
-***** Best Practices
+****** Best Practices
 
 It should be encouraged to not embed complex Nix in to the
 ~nixos_node~ resource, but to turn on a service or two described by
 custom modules in the user's NixOps network.
 
-***** Automatically loading all the nodes
+****** Automatically loading all the nodes
 
 NixOps could be convinced to load all these nodes automatically via a
 combination of builtins.readDir, import, and map.
