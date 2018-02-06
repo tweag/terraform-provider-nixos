@@ -143,7 +143,7 @@ resource "nixos_node" "web_frontend" {
 #+END_SRC
 
 The ~hardware-configuration.nix~ will be stored in the tfstate under
-~nixops_node.web_frontend.hardware_configuration~.
+~nixos_node.web_frontend.hardware_configuration~.
 
 The configuration will also be saved under:
 
