@@ -28,7 +28,7 @@ increases the community who is focusing on supporting more providers.
  - Support centralized configuration management of 2-50 NixOS hosts
  - Eliminate provider-specific code from NixOps
  - Take advantage of NixOps' existing support for networks, peer
-   nodes, and VPN support.
+   nodes, and automatic VPN configuration.
 
 * Implementation
 
