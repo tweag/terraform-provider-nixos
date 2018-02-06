@@ -25,6 +25,12 @@ increases the community who is focusing on supporting more providers.
 
 * Motivations
 
+I think a big reason NixOps is insufficient is it grew too many
+responsibilities without the community to back it up. The only reason
+it supports AWS well is because the primary user of NixOps is a huge
+user of AWS. If we strip out all the support for server providers, it
+becomes a much simpler tool, and I think a much better tool.
+
  - Support centralized configuration management of 2-50 NixOS hosts
  - Eliminate provider-specific code from NixOps
  - Take advantage of NixOps' existing support for networks, peer
