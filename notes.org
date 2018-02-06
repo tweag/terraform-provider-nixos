@@ -23,6 +23,13 @@ This breakdown allows reduces the coupling to NixOps, allowing NixOS
 users to benefit from the marshaling support. It also dramatically
 increases the community who is focusing on supporting more providers.
 
+* Motivations
+
+ - Support centralized configuration management of 2-50 NixOS hosts
+ - Eliminate provider-specific code from NixOps
+ - Take advantage of NixOps' existing support for networks, peer
+   nodes, and VPN support.
+
 * Implementation
 
 ** NixOS Provisioner
