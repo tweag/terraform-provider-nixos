@@ -23,11 +23,12 @@ resource "hcloud_server" "web" {
   #
   # provisioner "nixos-kexec" {
   #   ip = "${hcloud_server.web.ipv4_address}"
+  #   public_key = "${file("${var.ssh_public_key}")}"
   # }
   #
   # For more, read: ./provisioner-nixos-kexec/README
   provisioner "local-exec" {
-    command = "./provisioner-nixos-kexec/convert-to-nixos.sh ${hcloud_server.web.ipv4_address}"
+    command = "./provisioner-nixos-kexec/convert-to-nixos.sh '${hcloud_server.web.ipv4_address}' '${var.ssh_public_key}'"
   }
 
   # This is the first half of the nixos-node resource,

@@ -4,9 +4,12 @@ umount /dev/sda1 || true
 mkfs.ext4 -F -L nixos /dev/sda1
 mount /dev/sda1 /mnt
 nixos-generate-config --root /mnt
+
+cp /ssh_pubkey /mnt/etc/nixos/terraform-nixos-public-key
+
 cat /mnt/etc/nixos/configuration.nix | head -n $(($(cat /mnt/etc/nixos/configuration.nix | wc -l) - 1)) | grep -v grub > /mnt/etc/nixos/configuration.nix.next
 echo "services.openssh.enable = true;" >> /mnt/etc/nixos/configuration.nix.next
-echo "users.users.root.openssh.authorizedKeys.keys = [ \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDY8wRHQtq9uBzdiAYzpSNmF+nmIHmW+AOeBTDNmdva+CFGIBbB56q7w6GCOhfXs8edrPY4qOcQGaOD0ussIvHnqkVfw8e6CbxnpXKeAuIz7+1V72AhLPzOkif4yPrI6tSYF5nvzq6U4Yk1qFnXiLQjkA1s4EcZH6V0KbHMsu7Mtv3Irspdn8KUI3j2UwZcssFu1EuLHhLNussziRQK9tOg9ixb0U1WXuUJn7Noh9odTAsAt6jLFdr5eN/IINgC9WQqvY/W94Tc2/z5TWR7z382pEkMBR/3sf+nYKA82069tagkyrtJ/YXi00CWU4vjpnMvwPEYcmtCddfCPi8ZIUrn grahamc@Morbo\" ];" >> /mnt/etc/nixos/configuration.nix.next
+echo "users.users.root.openssh.authorizedKeys.keyFiles = [ ./terraform-nixos-public-key ];" >> /mnt/etc/nixos/configuration.nix.next
 echo "users.mutableUsers = false;" >> /mnt/etc/nixos/configuration.nix.next
 echo "}" >> /mnt/etc/nixos/configuration.nix.next
 mv /mnt/etc/nixos/configuration.nix.next /mnt/etc/nixos/configuration.nix
