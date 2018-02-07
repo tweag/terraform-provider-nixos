@@ -27,7 +27,7 @@ resource "hcloud_server" "web" {
   #
   # For more, read: ./provisioner-nixos-kexec/README
   provisioner "local-exec" {
-    command = "./convert-to-nixos.sh ${hcloud_server.web.ipv4_address}"
+    command = "./provisioner-nixos-kexec/convert-to-nixos.sh ${hcloud_server.web.ipv4_address}"
   }
 
   # This is the first half of the nixos-node resource,
@@ -35,6 +35,6 @@ resource "hcloud_server" "web" {
   #
   # The second half is in stage-one.tf
   provisioner "local-exec" {
-    command = "./setup-nixops.sh  '${hcloud_server.web.name}' '${hcloud_server.web.ipv4_address}' '${var.nixops_root}'"
+    command = "./resource-nixos-node/setup-nixops.sh  '${hcloud_server.web.name}' '${hcloud_server.web.ipv4_address}' '${var.nixops_root}'"
   }
 }

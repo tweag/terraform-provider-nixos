@@ -21,7 +21,7 @@ while ! ssh $sshopts "root@$1" true; do
     :
 done
 
-cat ./install-snippet | ssh $sshopts "root@$1" /bin/sh -c '"cat > ./install; chmod +x install; ./install"'
+cat ./provisioner-nixos-kexec/install-snippet | ssh $sshopts "root@$1" /bin/sh -c '"cat > ./install; chmod +x install; ./install"'
 
 while ! ssh $sshopts "root@$1" true; do
     :
