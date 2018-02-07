@@ -1,4 +1,6 @@
 
+********************** Run these in nix-shell! **********************
+
 Stage 1: Create the instances we're going to work with
 ======================================================
 
