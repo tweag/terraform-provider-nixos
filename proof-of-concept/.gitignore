@@ -1,0 +1,9 @@
+terraform.tfstate*
+fetch-configs
+my-nixops-repo
+terraform.tfvars
+.#*
+.fake-home
+.terraform
+demo/terraform
+stage-two.tf

@@ -1,0 +1,26 @@
+
+Stage 0: Create the instances we're going to work with
+======================================================
+
+$ terraform init
+$ terraform apply
+
+Stage 1: Copy instances' hardware-configuration.nix locally
+===========================================================
+
+Init terraform to find the local plugin (this seems like a bug in
+terraform):
+
+$ terraform init
+
+Then enable stage two:
+
+$ cp ./stage-two.tf.next ./stage-two.tf
+$ terraform apply
+
+Stage 2: NixOps
+===========================================================
+
+$ cd demo
+demo $ nixops create ./network.nix -d terraform-example
+demo $ nixops deploy
