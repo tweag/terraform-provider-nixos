@@ -2,6 +2,15 @@
 Stage 0: Create the instances we're going to work with
 ======================================================
 
+Setup your Terraform vars file:
+
+$ cp ./terraform.tfvars.example ./terraform.tfvars
+
+ - Don't change the nixops_root
+ - Use an absolute path to your SSH key
+ - If you need an hetzner cloud API key, register for one or borrow
+   Graham's. It is cheap.
+
 $ terraform init
 $ terraform apply
 
