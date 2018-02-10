@@ -1,3 +1,0 @@
-hcloud_token = "your-hetzner-cloud-api-key"
-nixops_root = "./demo"
-ssh_public_key = "/home/myuser/.ssh/id_rsa.pub"
