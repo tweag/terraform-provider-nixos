@@ -48,6 +48,59 @@ resource "nixos_node" "my-server" {
 }
 ```
 
+This will create a file at `./nixos-machines/my-server.nix`
+containing:
+
+```nix
+{
+  terraform.ip = "10.5.3.1";
+  terraform.name = "my-server-name";
+  environment.systemPackages = with pkgs; [
+    file
+  ];
+}
+```
+
+In your Nix configuration, add a file called `terraform.nix`
+containing:
+
+```nix
+{ config, lib, pkgs, ... }:
+let
+  inherit (lib) mkIf mkOption types;
+  cfg = config.terraform;
+in {
+  options = {
+    terraform = {
+      name = mkOption {
+        type = types.string;
+      };
+
+      ip = mkOption {
+        type = types.string;
+      };
+    };
+  };
+}
+```
+
+and add it to the `configuration.nix` via:
+
+```nix
+{
+  imports = [ ./terraform.nix ];
+}
+```
+
+If you're using the provider with NixOps, you may want to add this to
+your `configuration.nix`:
+
+```nix
+{
+  deployment.targetHost = terraform.ip;
+}
+```
+
 Developing the Provider
 ---------------------------
 
