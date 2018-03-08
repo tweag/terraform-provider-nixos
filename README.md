@@ -1,6 +1,12 @@
 Terraform Provider NixOS
 ==================
 
+NixOps has too many responsibilities and not a big enough community.
+The goal is to reduce NixOps' realm of control by moving all
+provisioning steps in to Terraform. This combines NixOp's deep support
+for NixOS with Terraform's nearly universal support for hardware and
+software providers.
+
 Maintainers
 -----------
 
