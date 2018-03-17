@@ -134,3 +134,21 @@ In order to run the full suite of Acceptance tests, run `make testacc`.
 ```sh
 $ make testacc
 ```
+
+## License
+
+Copyright (c) 2018 EURL Tweag.
+
+All rights reserved.
+
+terraform-provider-nixos is free software, and may be redistributed under the terms
+specified in the [LICENSE](LICENSE) file.
+
+## About
+
+![Tweag I/O](http://i.imgur.com/0HK8X4y.png)
+
+terraform-provider-nixos is maintained by [Tweag I/O](http://tweag.io/).
+
+Have questions? Need help? Tweet at
+[@tweagio](http://twitter.com/tweagio).
