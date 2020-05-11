@@ -1,6 +1,8 @@
 Terraform Provider NixOS
 ==================
 
+**Archived**: this project is not maintained anymore. You can use https://github.com/tweag/terraform-nixos instead.
+
 NixOps has too many responsibilities and not a big enough community.
 The goal is to reduce NixOps' realm of control by moving all
 provisioning steps in to Terraform. This combines NixOp's deep support
